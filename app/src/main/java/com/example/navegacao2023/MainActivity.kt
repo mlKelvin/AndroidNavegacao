@@ -45,23 +45,22 @@ fun MyApp() {
                 navController.navigate("form1")
             })
         }
+
         composable("form1") {
             Form1Screen(onNavigateForm2 = {
                 navController.navigate("form2/${it}")
             },
                 onBack = {
                     navController.navigateUp()
-                })
+                }
+            )
         }
+
         composable("form2/{nome}",
             arguments = listOf(navArgument("nome") { type = NavType.StringType})
         ){
             val param = it.arguments?.getString("nome")
-            Form2Screen(
-                param,
-                onBack = {
-                navController.navigateUp()
-                })
+            Form2Screen(param)
         }
     }
 }
